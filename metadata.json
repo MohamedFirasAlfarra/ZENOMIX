@@ -1,0 +1,6 @@
+{
+  "name": "Zenomix Logistics",
+  "description": "Premium logistics, global delivery, and modern fleet management services built with speed, precision, and state-of-the-art tracking technologies.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
