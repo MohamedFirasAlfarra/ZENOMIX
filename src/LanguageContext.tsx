@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { enTranslations, arTranslations, servicesData_ar, fleetData_ar, testimonialsData_ar, mockTrackingDatabase_ar } from './translations';
+import { enTranslations, arTranslations, deTranslations, servicesData_ar, servicesData_de, fleetData_ar, fleetData_de, testimonialsData_ar, testimonialsData_de, mockTrackingDatabase_ar, mockTrackingDatabase_de } from './translations';
 import { servicesData, fleetData, testimonialsData, mockTrackingDatabase } from './data';
 import { ServiceItem, FleetVehicle, Testimonial, TrackingData } from './types';
 
-type Language = 'en' | 'ar';
+type Language = 'en' | 'ar' | 'de';
 
 interface LanguageContextProps {
   language: Language;
@@ -22,7 +22,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('language');
-      if (saved === 'ar' || saved === 'en') return saved;
+      if (saved === 'ar' || saved === 'en' || saved === 'de') return saved;
       // Default to English
       return 'en';
     }
@@ -44,15 +44,23 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   const t = (key: keyof typeof enTranslations): string => {
-    const dict = language === 'ar' ? arTranslations : enTranslations;
+    const dictMap: Record<Language, typeof enTranslations> = {
+      en: enTranslations,
+      ar: arTranslations,
+      de: deTranslations,
+    };
+    const dict = dictMap[language];
     return dict[key] || enTranslations[key] || '';
   };
 
   // Select appropriate collections based on language
-  const services = language === 'ar' ? servicesData_ar : servicesData;
-  const fleet = language === 'ar' ? fleetData_ar : fleetData;
-  const testimonials = language === 'ar' ? testimonialsData_ar : testimonialsData;
-  const trackingDb = language === 'ar' ? mockTrackingDatabase_ar : mockTrackingDatabase;
+  const dataMap = {
+    en: { services: servicesData, fleet: fleetData, testimonials: testimonialsData, trackingDb: mockTrackingDatabase },
+    ar: { services: servicesData_ar, fleet: fleetData_ar, testimonials: testimonialsData_ar, trackingDb: mockTrackingDatabase_ar },
+    de: { services: servicesData_de, fleet: fleetData_de, testimonials: testimonialsData_de, trackingDb: mockTrackingDatabase_de },
+  };
+
+  const { services, fleet, testimonials, trackingDb } = dataMap[language];
 
   return (
     <LanguageContext.Provider

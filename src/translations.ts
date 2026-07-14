@@ -4,7 +4,8 @@ export const enTranslations = {
   // nav
   nav_home: 'Home',
   nav_services: 'Services',
-  nav_calculator: 'Transit Calculator',
+  nav_tracking_tech: 'Tracking & Tech',
+  nav_calculator: 'Cost Calculator',
   nav_tracker: 'Track Shipment',
   nav_fleet: 'Fleet & Tech',
   nav_about: 'About Us',
@@ -176,6 +177,7 @@ export const arTranslations: typeof enTranslations = {
   // nav
   nav_home: 'الرئيسية',
   nav_services: 'خدماتنا',
+  nav_tracking_tech: 'التتبع والتقنيات',
   nav_calculator: 'حاسبة التكلفة',
   nav_tracker: 'تتبع الشحنة',
   nav_fleet: 'الأسطول والتقنيات',
@@ -567,6 +569,408 @@ export const mockTrackingDatabase_ar: Record<string, TrackingData> = {
       { step: 2, location: 'ممر الطريق السريع B5', time: '04 يوليو، 12:30', status: 'قيد الانتقال والعبور', details: 'عبور بري اعتيادي عبر الطرق السريعة.' },
       { step: 3, location: 'مستودع فرز شمال هامبورغ', time: '04 يوليو، 15:45', status: 'خارج للميل الأخير', details: 'تم النقل وتسهيل المهمة لدراجة شحن كهربائية حضرية.' },
       { step: 4, location: 'محطة تيك ريتيل، هامبورغ', time: '04 يوليو، 16:55', status: 'تم التسليم بنجاح', details: 'تم استلام التوقيع البيومتري بنجاح. تم التحقق من قبل المستلم (جيه ميلر).' },
+    ]
+  }
+};
+
+// ===== GERMAN TRANSLATIONS =====
+
+export const deTranslations: typeof enTranslations = {
+  // nav
+  nav_home: 'Startseite',
+  nav_services: 'Dienstleistungen',
+  nav_tracking_tech: 'Tracking & Technik',
+  nav_calculator: 'Kostenrechner',
+  nav_tracker: 'Sendungsverfolgung',
+  nav_fleet: 'Flotte & Technik',
+  nav_about: 'Über uns',
+  nav_contact: 'Kontakt',
+  nav_track_btn: 'Paket verfolgen',
+
+  // hero
+  hero_badge: 'GLOBALE MULTIMODALE NETZWERKE',
+  hero_title_1: 'Autonome Logistik der nächsten',
+  hero_title_2: 'Generation mit niedrigen Emissionen',
+  hero_subtitle: 'Wir verbinden Schwerlast-Autobahnkorridore, maßgeschneiderte Flughafentransfers und intelligente städtische Verteilzentren unter einem durchgängigen Telemetriesystem.',
+  hero_btn_calc: 'Kostenrechner',
+  hero_btn_track: 'Live-Sendung verfolgen',
+  hero_stat_transits: 'AKTIVE TRANSPORTE',
+  hero_stat_countries: 'VERBUNDENE LÄNDER',
+  hero_stat_cargo: 'JÄHRLICHES FRACHTVOLUMEN',
+  hero_stat_status: 'DIAGNOSESTATUS',
+  hero_stat_status_val: 'SYSTEME NOMINAL',
+
+  // services
+  services_badge: 'Maßgeschneiderte Lieferkanäle',
+  services_title: 'Entwickelte Logistik-Workflows',
+  services_subtitle: 'Entdecken Sie unsere spezialisierten Versand- und Frachtkanäle, die jeweils mit verschlüsselter GPS-Telemetrie, Klimasteuerung und dynamischer Routenführung optimiert sind.',
+  services_transit_time: 'Transitzeit',
+  services_capacity: 'Kapazität',
+  services_coverage: 'Globale Abdeckung',
+  services_btn_view: 'Detaillierte Spezifikationen',
+
+  // calculator
+  calc_badge: 'TRANSIT-KOSTENRECHNER',
+  calc_title: 'Echtzeit-Kostenvoranschlag',
+  calc_subtitle: 'Konfigurieren Sie Ihre Sendungsparameter, um Standardtransitkosten, Energieeffizienz und geschätzte Kraftstoffemissionen einzusehen.',
+  calc_weight: 'Frachtgewicht (lbs)',
+  calc_volume: 'Frachtvolumen (cu ft)',
+  calc_distance: 'Entfernung (Meilen)',
+  calc_urgency: 'Transportdringlichkeit',
+  calc_urgency_standard: 'Standard-Bodenfracht',
+  calc_urgency_premium: 'Premium Luft- & Seefracht',
+  calc_urgency_express: 'Sofort-Expresskurier',
+  calc_feat_route: 'Dynamische Routenberechnung',
+  calc_feat_fees: 'Keine versteckten Hafengebühren',
+  calc_feat_billing: 'Sofortige Rechnungsstellung',
+  calc_matrix_title: 'Kosten- & Effizienzmatrix',
+  calc_total_rate: 'GESCHÄTZTER GESAMTPREIS',
+  calc_eco_rating: 'KRAFTSTOFF-ÖKO-BEWERTUNG',
+  calc_co2_offset: 'CO2-KOMPENSATION',
+  calc_est_dur: 'GESCHÄTZTE TRANSITZEIT',
+  calc_est_dur_val: 'Parameter ausstehend',
+  calc_hours: 'Stunden',
+  calc_days: 'Tage',
+
+  // tracker
+  tracker_badge: 'Live-Telemetrie-Terminal',
+  tracker_title: 'Echtzeit-Sendungsverfolgung',
+  tracker_subtitle: 'Geben Sie Ihren aktiven Frachtbrief oder Versandreferenz ein, um Koordinaten, Transitkontrollpunkte und dynamische ETAs zu prüfen.',
+  tracker_search_title: 'Telemetrie-Suche',
+  tracker_search_placeholder: 'z.B. ZN-982-A3',
+  tracker_active_routes: 'Aktive Demo-Routen',
+  tracker_routes_desc: 'Klicken Sie auf eine vorkonfigurierte Tracking-ID, um den dynamischen Logistikstrom im Telemetrie-Viewer zu laden:',
+  tracker_copy_id: 'ID kopieren',
+  tracker_copied: 'Kopiert',
+  tracker_no_manifest: 'Kein aktives Manifest geladen',
+  tracker_no_manifest_desc: 'Verwenden Sie das linke Preset-Panel, um Frachttransit-Zeitpläne zu laden, oder geben Sie einen gültigen Tracking-Code im Suchfeld oben ein.',
+  tracker_manifest_bill: 'Aktiver Frachtbrief',
+  tracker_progress: 'TRANSITFORTSCHRITT',
+  tracker_complete: 'ABGESCHLOSSEN',
+  tracker_origin: 'Herkunftsdisponent',
+  tracker_destination: 'Zielbestimmung',
+  tracker_sender: 'Absender',
+  tracker_receiver: 'Empfänger',
+  tracker_class: 'Versandklasse',
+  tracker_eta: 'Voraussichtliche Lieferung',
+  tracker_checkpoint_title: 'Transit-Kontrollpunkt-Zeitachse',
+  tracker_status_delivered: 'Zugestellt',
+  tracker_status_out_delivery: 'In Zustellung',
+  tracker_status_in_transit: 'Unterwegs',
+  tracker_status_pending: 'Ausstehend',
+
+  // fleet
+  fleet_badge: 'Zenomix Flottentechnik',
+  fleet_title: 'Emissionsarme intelligente Flotteninfrastruktur',
+  fleet_subtitle: 'Wir betreiben vollständig geprüfte Fernverkehrs- und lokale Frachtfahrzeuge mit intelligenten Öko-Routing-Algorithmen zur Minimierung von Lieferverzögerungen und Umweltauswirkungen.',
+  fleet_tab_all: 'Alle Fahrzeuge',
+  fleet_tab_heavy: 'Schwerlast',
+  fleet_tab_medium: 'Mittelschwer',
+  fleet_tab_light: 'Elektrisch / Mikro',
+  fleet_active_assets: 'Aktive Flottenfahrzeuge',
+  fleet_diag_console: 'Diagnose-Konsole',
+  fleet_class: 'KLASSE',
+  fleet_max_payload: 'Max. Nutzlast',
+  fleet_cargo_vol: 'Frachtvolumen',
+  fleet_propulsion: 'Antrieb',
+  fleet_max_range: 'Max. Reichweite',
+  fleet_telemetry_title: 'Entwickelte Telemetriesysteme',
+  fleet_satellite_disclaimer: 'Alle Telemetriedaten werden über verschlüsselte GPS-Satelliten im 5,8-GHz-Band übertragen.',
+  fleet_btn_request: 'Versandprotokoll anfordern',
+
+  // about
+  about_badge: 'Unternehmensprofil',
+  about_title_1: 'Wegbereiter für die Zukunft',
+  about_title_2: 'des reibungslosen Transits',
+  about_subtitle_1: 'Zenomix wurde 2018 gegründet, basierend auf einer einfachen Wahrheit: Traditionelle Lieferketten sind langsam, intransparent und hochgradig CO2-ineffizient. Durch die Vereinigung erstklassiger Transportmittel mit Echtzeit-Tracking haben wir eine Elite-Logistikplattform aufgebaut.',
+  about_subtitle_2: 'Heute koordiniert Zenomix Trockenfrachtfahrten, temperaturgesteuerte Pharma-Kuriere und Same-Hour-Mikro-Dispatches über ein zwischenstaatliches Korridornetz. Unser Engagement bleibt absolut: sichere Frachtabwicklung, schnelle Routenpläne und professioneller, zuverlässiger Service auf jeder Meile.',
+  about_stat_assets: 'Registrierte Flottenfahrzeuge',
+  about_stat_offset: 'CO2-neutraler Kompensationsstandard',
+  about_standards_title: 'Betriebsstandards',
+  about_pillar1_title: 'Aktive Sicherheitsüberwachung',
+  about_pillar1_desc: 'Alle Containersiegel, Fahrzeugverriegelungen und Transportschließfächer werden mit biometrischen Echtzeit-Alarmen und RFID-Schlüsseln überwacht.',
+  about_pillar2_title: 'Grüner Fußabdruck als Priorität',
+  about_pillar2_desc: 'Durch Investitionen in hybridgestützte Langstreckentransporter und Festkörper-EV-Transporter reduzieren wir aktiv die CO2-Emissionen in unseren Netzwerken um 40%.',
+  about_pillar3_title: 'Radikale Pünktlichkeitsintegrität',
+  about_pillar3_desc: 'Mit redundanten Fahrer-Relay-Plänen und vorausschauenden Wartungsalarmen halten wir eine makellose Pünktlichkeitsrate von 99,8%.',
+
+  // contact
+  contact_badge: 'Kontakt aufnehmen',
+  contact_title: 'Verbinden Sie sich mit unserem Disponenten',
+  contact_subtitle: 'Ob Sie maßgeschneiderte Unternehmenslogistik-Preise, Schwerfracht-Angebote oder Last-Mile-Routeneinrichtung benötigen – wir sind bereit zu helfen.',
+  contact_hq: 'Unternehmenszentrale',
+  contact_office_loc: 'Bürostandort',
+  contact_office_val: 'Speditionsallee 42, 80331 München, Deutschland',
+  contact_inquiries: 'Betriebliche Anfragen',
+  contact_reply_time: 'Durchschnittliche Antwortzeit: Unter 45 Minuten',
+  contact_hotline: 'Support-Hotline',
+  contact_hotline_val: '+49 89 4200 1188',
+  contact_hotline_hours: 'Mo - Sa: 24h Betriebsbereitschaft',
+  contact_iso_rating: 'ISO-BEWERTUNG',
+  contact_eco_license: 'ÖKO-LIZENZ',
+  contact_fleet_status: 'FLOTTENSTATUS',
+  contact_fleet_status_val: 'GEPRÜFT & SICHER',
+  contact_form_title: 'Routen- & Transitanfrage-Ticket',
+  contact_fullname: 'Vollständiger Name',
+  contact_email: 'Firmen-E-Mail',
+  contact_topic: 'Anfragethema',
+  contact_msg: 'Nachrichtendetails',
+  contact_topic_general: 'Allgemeine Betriebsanfrage',
+  contact_topic_highval: 'Maßgeschneiderter Hochwert-Frachttransport',
+  contact_topic_relay: 'Zwischenstaatliche Flotten-Relay-Verträge',
+  contact_topic_carbon: 'CO2-Neutralitätsberatung',
+  contact_placeholder_name: 'Max Mustermann',
+  contact_placeholder_email: 'max@unternehmen.de',
+  contact_placeholder_msg: 'Bitte geben Sie Frachtgewicht, Transithubs und zeitliche Einschränkungen an...',
+  contact_btn_submitting: 'Sichere Kanäle werden validiert...',
+  contact_btn_transmit: 'Anfrage-Ticket übermitteln',
+  contact_success_title: 'Anfrage erfolgreich übermittelt',
+  contact_success_desc: 'Vielen Dank! Ihr Ticket wurde clientseitig erstellt, simuliert und lokal protokolliert. Ein Logistikvertreter wurde zur Prüfung Ihrer Routenspezifikationen zugewiesen.',
+  contact_success_btn: 'Bestätigung schließen',
+  contact_ledger_title: 'Lokales Sitzungsprotokoll',
+  contact_ledger_remove: 'Protokolleintrag entfernen',
+
+  // footer
+  footer_slogan: 'Verbindung von Unternehmen mit Hochkapazitäts-Frachtrouten durch intelligentes multimodales Routing, Premium-Hybrid-Relays und verschlüsselte Satelliten-Tracker.',
+  footer_map_title: 'Frachtnetzwerk-Karte',
+  footer_ops_title: 'Kernbetrieb',
+  footer_ops_email: 'Versand-E-Mail',
+  footer_ops_hotline: 'Hotline-Support',
+  footer_ops_hours: 'Supportzeiten',
+  footer_ops_hours_val: '24 Stunden täglich',
+  footer_digest_title: 'Wöchentlicher Telemetrie-Digest',
+  footer_digest_desc: 'Abonnieren Sie Routendichte-Berichte, Flottentechnik-Updates und grüne Transportoptimierungen.',
+  footer_digest_placeholder: 'news@unternehmen.de',
+  footer_digest_success: 'Abonnement erfolgreich registriert!',
+  footer_copy: '© 2026 Zenomix Inc. Alle Rechte vorbehalten. Entwickelt als voll funktionsfähige Frontend-Single-Page-Anwendung.',
+  footer_cert: 'ZERTIFIZIERUNG: SCS-GREEN-902 & ISO-9001:2015 REGISTRIERT | CARRIER-ID: ZN-LC-4567',
+  footer_secured: 'GESICHERTES SYSTEM',
+  footer_green: 'GRÜN GEPRÜFT'
+};
+
+// German localized services list
+export const servicesData_de: ServiceItem[] = [
+  {
+    id: 'express',
+    title: 'Express Last-Mile-Lieferung',
+    shortDesc: 'Hyperlokal-schnelle Versendungen, On-Demand-Kurierrouten und Paketzustellung mit Echtzeit-Standortbenachrichtigungen.',
+    longDesc: 'Unser Express-Last-Mile-Netzwerk nutzt volldigitalisierte Disposition und unsere emissionsarme urbane Lieferwagenflotte, um sicherzustellen, dass kritische medizinische Versorgungsgüter, Dokumente und temperaturempfindliche Einzelhandelslieferungen innerhalb weniger Stunden eintreffen. Alle Lieferrouten werden dynamisch konsolidiert, um den CO2-Fußabdruck zu minimieren.',
+    iconName: 'Zap',
+    features: [
+      'Same-Day- und Next-Morning-Garantien',
+      'Dynamische urbane Mehrstopp-Routenkonsolidierung',
+      'Kontaktlose biometrische Signaturverifizierung',
+      'Kühlketten-Temperaturprotokollierung und Verwahrungsaudit'
+    ],
+    specs: {
+      transitTime: '1 - 6 Stunden',
+      capacity: 'Bis zu 2.500 lbs pro Transporter',
+      globalCoverage: 'Großstadtregionen'
+    }
+  },
+  {
+    id: 'freight',
+    title: 'Schwerfracht & Fernverkehr',
+    shortDesc: 'Komplettladungen (FTL) und Teilladungen (LTL) im Bodenverkehr auf nahtlosen zwischenstaatlichen Routen.',
+    longDesc: 'Die Schwerfrachtoperationen von Zenomix nutzen unsere erstklassige Sattelzugflotte für den Fernverkehr. Ausgestattet mit modernen Frachtverfolgungssensoren, automatisierten Wiegestationsumgehungen und Doppelfahrer-Relays halten wir eine kontinuierliche Geschwindigkeit über die wichtigsten Verteilungsarterien aufrecht.',
+    iconName: 'Truck',
+    features: [
+      'Flexible FTL- (Komplett-) & LTL- (Teil-) Frachten',
+      'Satellitenüberwachte Smart-Locks und Türöffnungssensoren',
+      'Doppelfahrer-Fernverkehr-Relays für Null-Standzeiten',
+      'Intermodale Umschlagoptionen an wichtigen Hafenknoten'
+    ],
+    specs: {
+      transitTime: '24 - 72 Stunden',
+      capacity: 'Bis zu 45.000 lbs pro Trailer',
+      globalCoverage: 'Zwischenstaatlich & grenzüberschreitend'
+    }
+  },
+  {
+    id: 'air-ocean',
+    title: 'Luft- & Seefracht-Express',
+    shortDesc: 'Multimodaler internationaler Versand, maßgeschneiderte Import-/Export-Zollabfertigung und strategischer Flughafen-bis-Tür-Transit.',
+    longDesc: 'Für den globalen Handel verbindet Zenomix kritische Lieferketten über wichtige ozeanische Kanäle und Express-Luftverkehrskorridore. Wir verwalten End-to-End-Dokumentation, Zoll-Bonded-Transfers, Frachtmanifeste und Flugplatz-Zuweisungen rund um die Uhr.',
+    iconName: 'Globe',
+    features: [
+      'Premium-Luftcharter-Buchungen für hochwertige Maschinen',
+      'FCL- (Vollcontainer-) und LCL- (Stückgut-) Seefracht',
+      'Zollmakler, Zollbürgschaften und Tarifberechnungen',
+      'IATA-zertifizierte Gefahrgut-Abwicklung'
+    ],
+    specs: {
+      transitTime: '2 - 7 Tage weltweit',
+      capacity: 'Keine Volumenbegrenzung',
+      globalCoverage: 'Global (220+ Länder)'
+    }
+  },
+  {
+    id: 'warehousing',
+    title: 'Intelligente Lagerhaltung & Lieferkette',
+    shortDesc: 'Gesicherte intelligente Lagereinrichtungen, automatisierte Bestandsauffüllung und fließende Lagerkommissionierungssysteme.',
+    longDesc: 'Unsere Logistikzentren dienen als Lagerhirn Ihres Unternehmens. Ausgestattet mit Echtzeit-Barcode-Telemetrie, automatisierten Produktkommissionierregalen und sicheren Klimatresoren übernehmen Zenomix-Lager die Sortierung, Katalogisierung, Umverpackung und Cross-Docking nahtlos.',
+    iconName: 'Shield',
+    features: [
+      'RFID-gekennzeichnete Inventarregale für sofortige Suchgenauigkeit',
+      'Klimatisierte Tresorräume für Pharma/Elektronik',
+      'Cross-Docking-Geschwindigkeiten unter 45 Minuten',
+      'Benutzerdefinierte API-Hooks für direkten E-Commerce-Sync'
+    ],
+    specs: {
+      transitTime: 'Sofortiger Versand',
+      capacity: 'Über 4,5 Mio. m² weltweit',
+      globalCoverage: 'Regionale Hub-Zentren'
+    }
+  }
+];
+
+// German localized fleet list
+export const fleetData_de: FleetVehicle[] = [
+  {
+    id: 'fleet-1',
+    name: 'Zenomix Fernverkehrs-Sattelzug',
+    type: 'heavy',
+    typeName: 'Schwerer Fernverkehrs-Lkw',
+    payload: '44.000 lbs',
+    volume: '3.800 cu ft',
+    range: '1.200 Meilen',
+    propulsion: 'Ultra-emissionsarmer Diesel (Hybrid-gestützt)',
+    imageAlt: 'Zenomix Schwerlast-Logistik-Trailer mit elegantem blauem Wellengrafik-Design',
+    features: ['Aerodynamische Kabinenverkleidungen', 'Kollisionsvermeidungsradar', 'Prädiktive Wartungsdiagnostik']
+  },
+  {
+    id: 'fleet-2',
+    name: 'Zenomix Express-Transporter',
+    type: 'medium',
+    typeName: 'Städtischer Lieferwagen',
+    payload: '4.800 lbs',
+    volume: '460 cu ft',
+    range: '320 Meilen',
+    propulsion: 'Vollelektrisch (Wasserstoff-Brennstoffzellen-Option)',
+    imageAlt: 'Zenomix weißer Lieferwagen mit charakteristischem Cyan- und Blaudesign',
+    features: ['Kurzwenderadius-Fahrgestell', 'Integrierte Hubladebühne', 'Regeneratives urbanes Bremssystem']
+  },
+  {
+    id: 'fleet-3',
+    name: 'Zenomix Quad-Dispatcher',
+    type: 'light',
+    typeName: 'Elektrisches Stadtfracht-Lastenrad',
+    payload: '450 lbs',
+    volume: '55 cu ft',
+    range: '65 Meilen',
+    propulsion: 'Dual-Batterie-Pedalunterstützung',
+    imageAlt: 'Zenomix leichter elektrischer Quad-Dispatcher mit überdachtem Frachtfach',
+    features: ['Emissionsfreie Mikro-Zustellung', 'Zugang zu engen Gassen', 'Austauschbare Wechsel-Akkupacks']
+  },
+  {
+    id: 'fleet-4',
+    name: 'Zenomix Flotten-Limousine',
+    type: 'electric',
+    typeName: 'Aufsichts- & Express-Kurierwagen',
+    payload: '950 lbs',
+    volume: '18 cu ft',
+    range: '380 Meilen',
+    propulsion: 'Festkörperbatterie-EV',
+    imageAlt: 'Zenomix Firmenflotten-Limousine in silber-blauer Folierung',
+    features: ['Autonome Autobahnspurzentrierung', 'Öko-Routing-GPS-Tracking', 'Sofort-Dokumentensicherheitsschließfach']
+  }
+];
+
+// German localized testimonials list
+export const testimonialsData_de: Testimonial[] = [
+  {
+    id: 'test-1',
+    name: 'Sarah Jenkins',
+    role: 'Globale Lieferketten-Direktorin',
+    company: 'Altas Tech Corp',
+    quote: 'Zenomix hat unsere regionale Lieferkettenführung transformiert. Ihre dynamischen Fernverkehrs-Doppelrelays verkürzten unsere zwischenstaatlichen Transportzyklen um 24 Stunden, und unsere Warenbeschädigungsrate sank auf absolut null.',
+    rating: 5
+  },
+  {
+    id: 'test-2',
+    name: 'Marcus Vance',
+    role: 'Betriebsleiter',
+    company: 'Prime Retail Solutions',
+    quote: 'Die Echtzeit-Last-Mile-Tracking-Integration ist unglaublich präzise. Unsere Kunden lieben es zu sehen, wann genau der Lieferwagen ihre Geschäftszone betritt. Äußerst professionelles Team und makellose, saubere Flotte.',
+    rating: 5
+  },
+  {
+    id: 'test-3',
+    name: 'Elena Rostova',
+    role: 'Logistik-Managerin',
+    company: 'BioPharma Global',
+    quote: 'Für temperaturkontrollierte pharmazeutische Materialien ist Zenomix unser einziger vertrauenswürdiger Frachtführer. Ihre Kühlkettenprüfung und der schnelle Kurierdienst waren entscheidend für die Aufrechterhaltung der absoluten Produktsicherheit.',
+    rating: 5
+  }
+];
+
+// German localized tracking database
+export const mockTrackingDatabase_de: Record<string, TrackingData> = {
+  'ZN-772-B1': {
+    trackingId: 'ZN-772-B1',
+    origin: 'München Hub (DE)',
+    destination: 'London Sortierzentrum (UK)',
+    sender: 'Vance Electronics AG',
+    receiver: 'Altas Logistics Ltd',
+    serviceType: 'Express-Komplettladung (FTL)',
+    estimatedDelivery: 'Morgen, 14:30 Uhr',
+    currentStatus: 'In Transit',
+    progressPercentage: 65,
+    history: [
+      { step: 1, location: 'München Hub (DE)', time: '05. Juli, 08:00', status: 'Frachtmanifest eingegangen', details: 'Sendung registriert, verladen und am Terminal versiegelt.' },
+      { step: 2, location: 'Knotenpunkt Straßburg (FR)', time: '05. Juli, 14:15', status: 'Grenzfreigabe OK', details: 'Transitkontrollpunkt passiert, Fahrerwechsel abgeschlossen.' },
+      { step: 3, location: 'Hafen Calais (FR)', time: '05. Juli, 19:40', status: 'Zoll passiert', details: 'Intermodalfracht gescannt, auf Kanaltunnel-Shuttle verladen.' },
+      { step: 4, location: 'Terminal Dover (UK)', time: 'Ausstehend', status: 'Auf dem Weg zur Sortierung', details: 'Vom Hafenterminal über M2-Fernverkehr versandt.' },
+    ]
+  },
+  'ZN-982-A3': {
+    trackingId: 'ZN-982-A3',
+    origin: 'New York Luftfrachtterminal (US)',
+    destination: 'Paris Charles de Gaulle (FR)',
+    sender: 'BioPharma Laboratories NY',
+    receiver: 'Hôpital de la Pitié-Salpêtrière',
+    serviceType: 'Premium Kühlketten-Luftfracht',
+    estimatedDelivery: '05. Juli, 21:00 Uhr (Heute)',
+    currentStatus: 'Out for Delivery',
+    progressPercentage: 90,
+    history: [
+      { step: 1, location: 'JFK Flughafen, NY (US)', time: '03. Juli, 22:30', status: 'Luftfrachtbrief erstellt', details: 'Temperatur bei 4,2°C validiert, Fracht im Luft-Bunker gesichert.' },
+      { step: 2, location: 'Atlantik-Transitsektor', time: '04. Juli, 11:15', status: 'Im Flug CDG-941', details: 'Direkter Lufttransportflug aktiv, Temperaturmonitore normal.' },
+      { step: 3, location: 'Flughafen Paris CDG (FR)', time: '05. Juli, 06:45', status: 'Zollfreigabe', details: 'Luftcontainer entladen, Temperatur geprüft, an Bodenteam übergeben.' },
+      { step: 4, location: 'Paris Zentraldepot', time: '05. Juli, 15:30', status: 'In Zustellung', details: 'Zugewiesen an Express-Lieferwagen #14. Kurierfahrer unterwegs.' },
+    ]
+  },
+  'ZN-104-C8': {
+    trackingId: 'ZN-104-C8',
+    origin: 'Hafen Singapur (SG)',
+    destination: 'Rotterdam Gateway (NL)',
+    sender: 'Pacific Machinery Group',
+    receiver: 'EuroRail Assemblies BV',
+    serviceType: 'Seefracht (FCL - Vollcontainer)',
+    estimatedDelivery: '12. Juli, 09:00 Uhr',
+    currentStatus: 'In Transit',
+    progressPercentage: 40,
+    history: [
+      { step: 1, location: 'Singapur Terminal 5 (SG)', time: '28. Juni, 10:30', status: 'Container eingelagert', details: 'Voller 40-Fuß-Container gewogen, gesichert und auf Schiff verladen.' },
+      { step: 2, location: 'Indischer Ozean Transit', time: '02. Juli, 18:00', status: 'Schiff unterwegs', details: 'Kontinuierlicher Transit an Bord der MS Zenomix Star. GPS-Ping bestätigt.' },
+      { step: 3, location: 'Suezkanal-Passage', time: 'Ausstehend', status: 'Annäherung an Hafensektor', details: 'Geplanter Kanaldurchfahrts-Slot für die nächste Phase zugewiesen.' },
+    ]
+  },
+  'ZN-334-D9': {
+    trackingId: 'ZN-334-D9',
+    origin: 'Berlin Zentrallager (DE)',
+    destination: 'Hamburg Verteilzentrum (DE)',
+    sender: 'Zenomix Versorgungszentren',
+    receiver: 'TechRetail Logistics Hamburg',
+    serviceType: 'Städtischer Kurierversand',
+    estimatedDelivery: '04. Juli, 17:00 Uhr',
+    currentStatus: 'Delivered',
+    progressPercentage: 100,
+    history: [
+      { step: 1, location: 'Berlin Lager (DE)', time: '04. Juli, 09:00', status: 'Auftrag versandt', details: 'Zugewiesen an mittelgroßen Express-Transporter.' },
+      { step: 2, location: 'B5 Autobahn-Korridor', time: '04. Juli, 12:30', status: 'Unterwegs', details: 'Routinemäßiger Autobahn-Transit.' },
+      { step: 3, location: 'Hamburg Nord Sortierzentrum', time: '04. Juli, 15:45', status: 'Letzte Meile', details: 'Übergabe an elektrisches urbanes Lastenrad.' },
+      { step: 4, location: 'TechRetail Terminal, Hamburg', time: '04. Juli, 16:55', status: 'Erfolgreich zugestellt', details: 'Biometrische Unterschrift erhalten. Verifiziert durch Empfänger (J. Müller).' },
     ]
   }
 };

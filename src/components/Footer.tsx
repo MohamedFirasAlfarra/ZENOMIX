@@ -5,9 +5,10 @@ import { Mail, Send, Linkedin, Twitter, Github, Youtube, CheckCircle, Shield, Aw
 
 interface FooterProps {
   onNavigate: (id: string) => void;
+  isDark?: boolean;
 }
 
-export default function Footer({ onNavigate }: FooterProps) {
+export default function Footer({ onNavigate, isDark = false }: FooterProps) {
   const { t, isRtl } = useLanguage();
   const [newsEmail, setNewsEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -23,11 +24,11 @@ export default function Footer({ onNavigate }: FooterProps) {
 
   const menuLinks = [
     { label: t('nav_home'), id: 'home' },
+    { label: t('nav_about'), id: 'about' },
     { label: t('nav_services'), id: 'services' },
     { label: t('nav_calculator'), id: 'calculator' },
     { label: t('nav_tracker'), id: 'tracker' },
     { label: t('nav_fleet'), id: 'fleet' },
-    { label: t('nav_about'), id: 'about' },
     { label: t('nav_contact'), id: 'contact' },
   ];
 
@@ -44,7 +45,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           {/* Logo & Slogan Column */}
           <div className="lg:col-span-4 flex flex-col space-y-5">
             <div className={`flex ${isRtl ? 'justify-end' : 'justify-start'}`}>
-              <Logo size="md" />
+              <Logo size="md" isDark={isDark} />
             </div>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed max-w-sm font-sans">
               {t('footer_slogan')}

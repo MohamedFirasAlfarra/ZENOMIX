@@ -145,7 +145,7 @@ export default function App() {
       </main>
 
       {/* Footer & Compliance Details */}
-      <Footer onNavigate={handleNavigate} />
+      <Footer onNavigate={handleNavigate} isDark={isDark} />
 
       {/* Back to Top floating micro-control */}
       {showScrollTop && (

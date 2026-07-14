@@ -1,5 +1,6 @@
 import React from 'react';
-import zenomixIcon from '../assets/zenomix-icon.png';
+import zenomixIconDark from '../assets/zenomix-logo.png';
+import zenomixIconLight from '../assets/zenomix-logo-light.png';
 
 interface LogoProps {
   className?: string;
@@ -7,34 +8,29 @@ interface LogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   onClick?: () => void;
   lightText?: boolean;
+  isDark?: boolean;
 }
 
-export default function Logo({ className = '', iconOnly = false, size = 'md', onClick, lightText = false }: LogoProps) {
+export default function Logo({ className = '', iconOnly = false, size = 'md', onClick, lightText = false, isDark = false }: LogoProps) {
   const dimensions = {
-    sm: { icon: 'h-6 w-6', text: 'text-lg' },
-    md: { icon: 'h-9 w-9', text: 'text-2xl' },
-    lg: { icon: 'h-14 w-14', text: 'text-4xl' },
-    xl: { icon: 'h-24 w-24', text: 'text-6xl' },
+    sm: { icon: 'h-16 w-auto', text: 'text-lg' },
+    md: { icon: 'h-20 w-auto', text: 'text-2xl' },
+    lg: { icon: 'h-20 w-auto', text: 'text-4xl' },
+    xl: { icon: 'h-32 w-auto', text: 'text-6xl' },
   };
 
   const currentSize = dimensions[size];
+  const logoSrc = isDark ? zenomixIconDark : zenomixIconLight;
 
   return (
-    <div className={`flex items-center gap-2.5 select-none ${className}`} onClick={onClick}>
-      {/* Official Zenomix "Z" Brand Mark */}
+    <div className={`flex items-center select-none ${className}`} onClick={onClick}>
+      {/* Official Zenomix Logo */}
       <img
-        src={zenomixIcon}
+        src={logoSrc}
         alt="Zenomix Logo"
         className={`${currentSize.icon} shrink-0 object-contain transition-transform duration-300 hover:scale-105`}
         draggable={false}
       />
-
-      {!iconOnly && (
-        <span className={`${currentSize.text} font-display font-bold tracking-tight flex items-center`}>
-          <span className={lightText ? 'text-white' : 'text-slate-900 dark:text-white'}>Z</span>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500 dark:from-sky-300 dark:to-blue-400">enomix</span>
-        </span>
-      )}
     </div>
   );
 }
