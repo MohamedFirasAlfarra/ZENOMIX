@@ -23,9 +23,9 @@ export default function Hero({ onNavigate }: HeroProps) {
           
           {/* Left Column: Text & CTAs */}
           <div className={`lg:col-span-7 flex flex-col space-y-8 ${isRtl ? 'text-right items-start' : 'text-left items-start'}`}>
-            
+
             {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/40 px-4 py-1.5 rounded-full w-fit">
+            <div className="hidden lg:inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/40 px-4 py-1.5 rounded-full w-fit">
               <span className="flex h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
               <span className="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">
                 {t('hero_badge')}
@@ -33,7 +33,7 @@ export default function Hero({ onNavigate }: HeroProps) {
             </div>
 
             {/* Core Headline */}
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+            <h1 className="hidden lg:block font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
               {t('hero_title_1')}{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 dark:from-blue-400 dark:via-indigo-400 dark:to-blue-300">
                 {t('hero_title_2')}
@@ -41,22 +41,22 @@ export default function Hero({ onNavigate }: HeroProps) {
             </h1>
 
             {/* Paragraph Description */}
-            <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl leading-relaxed font-normal">
+            <p className="hidden lg:block text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl leading-relaxed font-normal">
               {t('hero_subtitle')}
             </p>
 
             {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <div className="hidden lg:flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
               <button
-                onClick={() => onNavigate('calculator')}
+                onClick={() => onNavigate('tracking-tech')}
                 className="flex items-center justify-center gap-2.5 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-bold text-xs uppercase tracking-wider px-8 py-4 rounded-full shadow-md shadow-blue-500/10 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
               >
                 {t('hero_btn_calc')}
                 <ArrowRight className={`h-[18px] w-[18px] ${isRtl ? 'rotate-180' : ''}`} />
               </button>
-              
+
               <button
-                onClick={() => onNavigate('tracker')}
+                onClick={() => onNavigate('tracking-tech')}
                 className="flex items-center justify-center gap-2.5 bg-white hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 font-bold text-xs uppercase tracking-wider px-8 py-4 rounded-full shadow-sm transition-all duration-300 hover:scale-[1.02] cursor-pointer"
               >
                 {t('hero_btn_track')}
@@ -64,7 +64,7 @@ export default function Hero({ onNavigate }: HeroProps) {
             </div>
 
             {/* Feature Badges Grid */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-slate-800 w-full">
+            <div className="hidden lg:grid grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-slate-800 w-full">
               <div className="flex items-start gap-2.5">
                 <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 mt-0.5">
                   <ShieldCheck className="h-5 w-5" />
@@ -99,7 +99,7 @@ export default function Hero({ onNavigate }: HeroProps) {
           </div>
 
           {/* Right Column: Premium Graphical Showcase Card */}
-          <div className="lg:col-span-5 relative">
+          <div className="hidden lg:block lg:col-span-5 relative">
             
             {/* Ambient Background Glow behind container */}
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-indigo-100 dark:from-blue-900/10 dark:to-indigo-900/10 rounded-3xl filter blur-xl opacity-80" />
