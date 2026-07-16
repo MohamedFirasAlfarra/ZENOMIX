@@ -5,10 +5,11 @@ import { Mail, Send, Linkedin, Twitter, Github, Youtube, CheckCircle, Shield, Aw
 
 interface FooterProps {
   onNavigate: (id: string) => void;
+  onNavigatePage: (page: 'home' | 'impressum' | 'datenschutz') => void;
   isDark?: boolean;
 }
 
-export default function Footer({ onNavigate, isDark = false }: FooterProps) {
+export default function Footer({ onNavigate, onNavigatePage, isDark = false }: FooterProps) {
   const { t, isRtl } = useLanguage();
   const [newsEmail, setNewsEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -43,7 +44,7 @@ export default function Footer({ onNavigate, isDark = false }: FooterProps) {
         <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-slate-200 dark:border-slate-800 ${isRtl ? 'flex-row-reverse' : ''}`}>
           
           {/* Logo & Slogan Column */}
-          <div className="lg:col-span-4 flex flex-col space-y-5">
+          <div className="lg:col-span-3 flex flex-col space-y-5">
             <div className={`flex ${isRtl ? 'justify-end' : 'justify-start'}`}>
               <Logo size="md" isDark={isDark} />
             </div>
@@ -71,7 +72,7 @@ export default function Footer({ onNavigate, isDark = false }: FooterProps) {
           </div>
 
           {/* Sitemaps Column */}
-          <div className="lg:col-span-3 flex flex-col space-y-4">
+          <div className="lg:col-span-2 flex flex-col space-y-4">
             <h4 className="text-xs font-sans font-extrabold text-slate-800 dark:text-slate-200 uppercase tracking-widest">
               {t('footer_map_title')}
             </h4>
@@ -86,6 +87,31 @@ export default function Footer({ onNavigate, isDark = false }: FooterProps) {
                   </button>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Legal Column */}
+          <div className="lg:col-span-2 flex flex-col space-y-4">
+            <h4 className="text-xs font-sans font-extrabold text-slate-800 dark:text-slate-200 uppercase tracking-widest">
+              {t('footer_legal_title')}
+            </h4>
+            <ul className="grid grid-cols-1 gap-2.5">
+              <li>
+                <button
+                  onClick={() => onNavigatePage('impressum')}
+                  className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium cursor-pointer"
+                >
+                  {t('footer_imprint')}
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigatePage('datenschutz')}
+                  className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium cursor-pointer"
+                >
+                  {t('footer_privacy')}
+                </button>
+              </li>
             </ul>
           </div>
 

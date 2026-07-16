@@ -9,6 +9,7 @@ export const enTranslations = {
   nav_tracker: 'Track Shipment',
   nav_fleet: 'Fleet & Tech',
   nav_about: 'About Us',
+  nav_faq: 'FAQ',
   nav_contact: 'Contact',
   nav_track_btn: 'Track Package',
 
@@ -155,6 +156,25 @@ export const enTranslations = {
   contact_ledger_title: 'Local Session Ledger',
   contact_ledger_remove: 'Remove log entry',
 
+  // faq
+  faq_badge: 'COMMON INQUIRIES',
+  faq_title: 'Frequently Asked Questions',
+  faq_subtitle: 'Find answers to key questions about Zenomix operations, tracking technology, fleet sustainability, and more.',
+  faq_q1: 'How are Zenomix shipping and transit rates calculated?',
+  faq_a1: 'Rates are calculated dynamically based on cargo weight, volume, route distance, and selected urgency. You can use our real-time Transit Costing Engine above for an instant estimate, including CO2 offset data.',
+  faq_q2: 'What technologies ensure the safety of high-value cargo?',
+  faq_a2: 'All our cargo compartments are secured with RFID container seals, biometric locking systems, and encrypted 5.8GHz satellite GPS telemetry. Any unauthorized activity triggers immediate alarms in our dispatch center.',
+  faq_q3: 'How does the driver relay system guarantee on-time transit?',
+  faq_a3: 'For interstate corridors, fresh drivers take over at designated relay hubs. This prevents rest-stop delays, ensuring cargo moves continuously and allowing us to maintain a 99.8% on-time dispatch rate.',
+  faq_q4: 'What makes the Zenomix fleet low-emission and sustainable?',
+  faq_a4: 'Our fleet comprises hybrid-assist long-haulers, solid-state EV cargo vans, and urban cargo e-bikes. Combined with AI-driven eco-routing algorithms, we reduce average carbon emissions by 40% compared to legacy logistics.',
+  faq_q5: 'Can I integrate my corporate platform with Zenomix warehouses?',
+  faq_a5: 'Yes, our smart warehouses offer custom developer API integrations for real-time inventory updates, automated picking schedules, and immediate shipping label generation.',
+
+  footer_legal_title: 'Legal',
+  footer_imprint: 'Imprint',
+  footer_privacy: 'Privacy Policy',
+
   // footer
   footer_slogan: 'Connecting enterprises to high-capacity cargo lanes through smart multi-modal routing, premium hybrid-relays, and encrypted satellite trackers.',
   footer_map_title: 'Cargo Network Map',
@@ -182,6 +202,7 @@ export const arTranslations: typeof enTranslations = {
   nav_tracker: 'تتبع الشحنة',
   nav_fleet: 'الأسطول والتقنيات',
   nav_about: 'من نحن',
+  nav_faq: 'الأسئلة الشائعة',
   nav_contact: 'اتصل بنا',
   nav_track_btn: 'تتبع الطرد',
 
@@ -327,6 +348,25 @@ export const arTranslations: typeof enTranslations = {
   contact_success_btn: 'إغلاق التأكيد',
   contact_ledger_title: 'سجل الجلسة المحلي',
   contact_ledger_remove: 'حذف السجل',
+
+  // faq
+  faq_badge: 'الاستفسارات الشائعة',
+  faq_title: 'الأسئلة الأكثر شيوعاً',
+  faq_subtitle: 'اعثر على إجابات سريعة للأسئلة المتكررة حول حساب المسارات، ومواصفات الأسطول، والتتبع في الوقت الفعلي، ومقاييس خفض الانبعاثات.',
+  faq_q1: 'كيف تقوم زينوميكس بحساب تكلفة وأسعار الشحن؟',
+  faq_a1: 'يتم احتساب التكلفة ديناميكياً بناءً على وزن الشحنة، وحجمها، ومسافة المسار، ودرجة الاستعجال المطلوبة. يمكنك استخدام محرك حساب تكلفة النقل المباشر أعلاه للحصول على عرض أسعار فوري، بما في ذلك تقديرات انبعاثات الكربون ومدة التوصيل.',
+  faq_q2: 'ما هي التقنيات المستخدمة لضمان أمان الشحنات الثمينة؟',
+  faq_a2: 'جميع أصول الشحن لدينا مجهزة بأختام حاويات ذكية تدعم تقنية RFID، وأنظمة قفل بيومترية، ونظام قياس وتتبع مشفر عبر الأقمار الصناعية بتردد 5.8 جيجاهرتز. أي محاولة فتح غير مصرح بها تطلق إنذاراً فورياً في مركز التحكم والعمليات الرئيسي.',
+  faq_q3: 'كيف يعمل نظام التناوب والترحيل الثنائي للسائقين؟',
+  faq_a3: 'في ممرات النقل البري الطويلة، نعتمد نظام تناوب مستمر للسائقين حيث يتسلم سائقون بدلاء ومهيأون الشاحنة عند نقاط عبور مخصصة. يلغي هذا فترات التوقف الإلزامية للراحة، مما يضمن حركة الشحن المستمرة وتحقيق دقة مواعيد بنسبة 99.8%.',
+  faq_q4: 'ما الذي يجعل أسطول زينوميكس منخفض الانبعاثات وصديقاً للبيئة؟',
+  faq_a4: 'نحن نشغل شاحنات نقل ثقيلة هجينة، وسيارات توصيل حضرية كهربائية بالكامل تعمل ببطاريات الحالة الصلبة، ودراجات شحن كهربائية صغيرة ذات بطاريات مزدوجة. بالتعاون مع خوارزميات التوجيه الصديقة للبيئة المدعومة بالذكاء الاصطناعي، نخفض انبعاثات الكربون بمعدل 40% مقارنة بالشبكات التقليدية.',
+  faq_q5: 'هل يمكنني ربط منصة التجارة الإلكترونية الخاصة بشركتي مع مستودعات زينوميكس الذكية؟',
+  faq_a5: 'نعم، توفر مستودعاتنا الذكية واجهات برمجة تطبيقات (API) مخصصة للمطورين. تتيح هذه الواجهات سحب الطلبات تلقائياً، وتحديث المخزون في الوقت الفعلي، وتوليد بوليصات الشحن فوراً عند تحديث مستويات المخزون.',
+
+  footer_legal_title: 'الشؤون القانونية',
+  footer_imprint: 'بيانات الشركة (Impressum)',
+  footer_privacy: 'سياسة الخصوصية (Datenschutz)',
 
   // footer
   footer_slogan: 'ربط الشركات بممرات الشحن عالية السعة من خلال التوجيه الذكي متعدد الوسائط، وأنظمة التناوب الهجينة، وأجهزة التتبع المشفرة عبر الأقمار الصناعية.',
@@ -584,6 +624,7 @@ export const deTranslations: typeof enTranslations = {
   nav_tracker: 'Sendungsverfolgung',
   nav_fleet: 'Flotte & Technik',
   nav_about: 'Über uns',
+  nav_faq: 'FAQ',
   nav_contact: 'Kontakt',
   nav_track_btn: 'Paket verfolgen',
 
@@ -729,6 +770,25 @@ export const deTranslations: typeof enTranslations = {
   contact_success_btn: 'Bestätigung schließen',
   contact_ledger_title: 'Lokales Sitzungsprotokoll',
   contact_ledger_remove: 'Protokolleintrag entfernen',
+
+  // faq
+  faq_badge: 'HÄUFIGE FRAGEN',
+  faq_title: 'Häufig gestellte Fragen',
+  faq_subtitle: 'Finden Sie schnelle Antworten auf häufige Fragen zu unseren Routenberechnungen, Flottenspezifikationen, Echtzeit-Tracking und CO2-Kompensationen.',
+  faq_q1: 'Wie berechnet Zenomix die Transport- und Frachtraten?',
+  faq_a1: 'Die Raten werden dynamisch basierend auf Frachtgewicht, Volumen, Routenentfernung und der gewählten Dringlichkeit berechnet. Sie können unseren Echtzeit-Transitkostenrechner oben verwenden, um sofort ein Angebot inklusive geschätzter CO2-Kompensation und Transitdauer zu erhalten.',
+  faq_q2: 'Welche Technologien gewährleisten die Sicherheit hochwertiger Fracht?',
+  faq_a2: 'Alle unsere Frachtgüter sind mit RFID-fähigen Containerversiegelungen, biometrischen Schließsystemen und verschlüsselter 5.8-GHz-Satelliten-GPS-Telemetrie ausgestattet. Jeder unbefugte Zugriff löst sofort Alarm in unserer zentralen Disposition aus.',
+  faq_q3: 'Wie funktioniert das Doppelfahrer-Relaysystem?',
+  faq_a3: 'Für Fernverkehrsstrecken nutzen wir ein Fahrer-Relaysystem, bei dem frische Fahrer an ausgewiesenen Transitknotenpunkten übernehmen. Dies eliminiert obligatorische Ruhepausenverzögerungen und sorgt für eine kontinuierliche Frachtbewegung bei einer Pünktlichkeitsrate von 99,8 %.',
+  faq_q4: 'Was macht die Zenomix-Flotte emissionsarm?',
+  faq_a4: 'Wir betreiben hybridgestützte Sattelzüge, städtische Elektrotransporter mit Festkörperbatterien und E-Lastenräder mit Doppelbatterie. In Kombination mit unserer KI-gestützten Routenplanung reduzieren wir die CO2-Emissionen im Vergleich zu herkömmlichen Logistiknetzwerken um durchschnittlich 40 %.',
+  faq_q5: 'Kann ich meine E-Commerce-Plattform in die Zenomix-Lagerhaltung integrieren?',
+  faq_a5: 'Ja, unsere intelligenten Lagerhäuser bieten Entwicklern maßgeschneiderte API-Integrationen. Dies ermöglicht eine automatisierte Kommissionierung, Bestandsaktualisierungen in Echtzeit und den sofortigen Versandetikettendruck, sobald sich die Lagerbestände ändern.',
+
+  footer_legal_title: 'Rechtliches',
+  footer_imprint: 'Impressum',
+  footer_privacy: 'Datenschutz',
 
   // footer
   footer_slogan: 'Verbindung von Unternehmen mit Hochkapazitäts-Frachtrouten durch intelligentes multimodales Routing, Premium-Hybrid-Relays und verschlüsselte Satelliten-Tracker.',

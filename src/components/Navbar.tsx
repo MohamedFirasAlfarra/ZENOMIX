@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Logo from './Logo';
 import { Menu, X, ArrowRight, Sun, Moon, Globe, ChevronDown, Check } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import { motion, AnimatePresence } from 'motion/react';
 import syriaFlag from '../assets/syria.png';
 import americaFlag from '../assets/amrica.png';
 import germanFlag from '../assets/Germane.png';
@@ -27,12 +28,8 @@ export default function Navbar({ onNavigate, activeSection, isDark, onToggleDark
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [mobileLangDropdownOpen, setMobileLangDropdownOpen] = useState(false);
-  const [trackingDropdownOpen, setTrackingDropdownOpen] = useState(false);
-  const [mobileTrackingDropdownOpen, setMobileTrackingDropdownOpen] = useState(false);
   const langDropdownRef = useRef<HTMLDivElement>(null);
   const mobileLangDropdownRef = useRef<HTMLDivElement>(null);
-  const trackingDropdownRef = useRef<HTMLDivElement>(null);
-  const mobileTrackingDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,12 +52,6 @@ export default function Navbar({ onNavigate, activeSection, isDark, onToggleDark
       if (mobileLangDropdownRef.current && !mobileLangDropdownRef.current.contains(e.target as Node)) {
         setMobileLangDropdownOpen(false);
       }
-      if (trackingDropdownRef.current && !trackingDropdownRef.current.contains(e.target as Node)) {
-        setTrackingDropdownOpen(false);
-      }
-      if (mobileTrackingDropdownRef.current && !mobileTrackingDropdownRef.current.contains(e.target as Node)) {
-        setMobileTrackingDropdownOpen(false);
-      }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -70,14 +61,9 @@ export default function Navbar({ onNavigate, activeSection, isDark, onToggleDark
     { label: t('nav_home'), id: 'home' },
     { label: t('nav_about'), id: 'about' },
     { label: t('nav_services'), id: 'services' },
-    { label: t('nav_tracking_tech'), id: 'tracking-tech', hasDropdown: true },
+    { label: t('nav_tracking_tech'), id: 'tracking-tech' },
+    { label: t('nav_faq'), id: 'faq' },
     { label: t('nav_contact'), id: 'contact' },
-  ];
-
-  const trackingDropdownItems = [
-    { label: t('nav_calculator'), id: 'calculator' },
-    { label: t('nav_tracker'), id: 'tracker' },
-    { label: t('nav_fleet'), id: 'fleet' },
   ];
 
   const handleItemClick = (id: string) => {
@@ -91,10 +77,10 @@ export default function Navbar({ onNavigate, activeSection, isDark, onToggleDark
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         mobileMenuOpen
-          ? isDark ? 'bg-[#101532] border-b border-slate-700/50 shadow-md py-3.5' : 'bg-[#f0f5f9] border-b border-slate-300/50 shadow-md py-3.5'
+          ? isDark ? 'bg-[#101532] border-b border-slate-700/50 shadow-md py-3.5' : 'bg-[#F7FBFD] border-b border-slate-300/50 shadow-md py-3.5'
           : isScrolled
-          ? isDark ? 'bg-[#101532]/95 backdrop-blur-md shadow-md border-b border-slate-700/50 py-3.5' : 'bg-[#f0f5f9]/95 backdrop-blur-md shadow-md border-b border-slate-300/50 py-3.5'
-          : isDark ? 'bg-[#101532]/90 backdrop-blur-sm border-b border-slate-700/30 py-5' : 'bg-[#f0f5f9]/90 backdrop-blur-sm border-b border-slate-300/30 py-5'
+          ? isDark ? 'bg-[#101532]/95 backdrop-blur-md shadow-md border-b border-slate-700/50 py-3.5' : 'bg-[#F7FBFD]/95 backdrop-blur-md shadow-md border-b border-slate-300/50 py-3.5'
+          : isDark ? 'bg-[#101532]/90 backdrop-blur-sm border-b border-slate-700/30 py-5' : 'bg-[#F7FBFD]/90 backdrop-blur-sm border-b border-slate-300/30 py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -112,50 +98,6 @@ export default function Navbar({ onNavigate, activeSection, isDark, onToggleDark
           {/* Desktop Nav Items */}
           <div className={`hidden lg:flex items-center gap-1.5 rounded-full p-1 shadow-sm ${isDark ? 'bg-slate-800/50 border border-slate-700/50' : 'bg-white/50 border border-slate-300/50'}`}>
             {navItems.map((item) => {
-              if (item.hasDropdown) {
-                return (
-                  <div key={item.id} className="relative" ref={trackingDropdownRef}>
-                    <button
-                      onClick={() => setTrackingDropdownOpen(!trackingDropdownOpen)}
-                      className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold tracking-normal transition-all duration-250 cursor-pointer ${
-                        activeSection === 'calculator' || activeSection === 'tracker' || activeSection === 'fleet'
-                          ? 'bg-blue-600 text-white shadow-md shadow-blue-500/15'
-                          : isDark ? 'text-slate-200 hover:text-blue-400 hover:bg-slate-700/50' : 'text-slate-700 hover:text-blue-600 hover:bg-slate-100/50'
-                      }`}
-                    >
-                      {item.label}
-                      <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${trackingDropdownOpen ? 'rotate-180' : ''}`} />
-                    </button>
-
-                    {/* Dropdown Menu */}
-                    {trackingDropdownOpen && (
-                      <div className={`absolute top-full mt-2 left-0 w-48 border rounded-2xl shadow-xl overflow-hidden animate-fade-in z-50 ${
-                        isDark ? 'bg-slate-900 border-slate-700/50 shadow-slate-950/50' : 'bg-white border-slate-300/50 shadow-slate-200/50'
-                      }`}>
-                        {trackingDropdownItems.map((dropdownItem) => {
-                          const isActive = activeSection === dropdownItem.id;
-                          return (
-                            <button
-                              key={dropdownItem.id}
-                              onClick={() => {
-                                handleItemClick(dropdownItem.id);
-                                setTrackingDropdownOpen(false);
-                              }}
-                              className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold transition-all duration-150 cursor-pointer ${
-                                isActive
-                                  ? isDark ? 'bg-blue-950/40 text-blue-400' : 'bg-blue-50 text-blue-600'
-                                  : isDark ? 'text-slate-300 hover:bg-slate-800/60' : 'text-slate-700 hover:bg-slate-100/60'
-                              }`}
-                            >
-                              <span className="flex-1 text-left">{dropdownItem.label}</span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
               const isActive = activeSection === item.id;
               return (
                 <button
@@ -323,106 +265,123 @@ export default function Navbar({ onNavigate, activeSection, isDark, onToggleDark
       </div>
 
       {/* Mobile Drawer menu */}
-      {mobileMenuOpen && (
-        <div className={`lg:hidden fixed inset-x-0 bottom-0 top-[58px] z-40 animate-fade-in border-t shadow-2xl ${
-          isDark ? 'bg-[#101532] border-slate-700/50' : 'bg-[#f0f5f9] border-slate-300/50'
-        }`}>
-          <div className={`flex flex-col p-6 space-y-3 h-full overflow-y-auto pb-32 ${isDark ? 'bg-[#101532]' : 'bg-[#f0f5f9]'}`}>
-            {navItems.map((item) => {
-              if (item.hasDropdown) {
-                return (
-                  <div key={item.id} className="relative" ref={mobileTrackingDropdownRef}>
-                    <button
-                      onClick={() => setMobileTrackingDropdownOpen(!mobileTrackingDropdownOpen)}
-                      className={`w-full ${isRtl ? 'text-right' : 'text-left'} px-5 py-3.5 rounded-2xl text-sm font-bold tracking-normal transition-all duration-200 cursor-pointer border flex items-center justify-between ${
-                        activeSection === 'calculator' || activeSection === 'tracker' || activeSection === 'fleet'
-                          ? 'bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/10'
-                          : isDark ? 'bg-slate-800/50 text-slate-200 border-transparent hover:bg-slate-700/50' : 'bg-white/50 text-slate-700 border-transparent hover:bg-slate-100/50'
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: isRtl ? 100 : -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: isRtl ? 100 : -100 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            className={`lg:hidden fixed inset-x-0 bottom-0 top-[58px] z-40 border-t shadow-2xl ${
+              isDark ? 'bg-[#101532] border-slate-700/50' : 'bg-[#F7FBFD] border-slate-300/50'
+            }`}
+          >
+            <div className={`flex flex-col h-full overflow-hidden ${isDark ? 'bg-[#101532]' : 'bg-[#F7FBFD]'}`}>
+              {/* Header with close button */}
+              <div className={`flex items-center justify-between px-6 py-4 border-b ${isDark ? 'border-slate-700/50' : 'border-slate-300/50'}`}>
+                <div className={`flex items-center gap-3 ${isRtl ? 'flex-row-reverse' : ''}`}>
+                  <Logo size="sm" isDark={isDark} />
+                  <span className={`text-sm font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Zenomix</span>
+                </div>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`p-2 rounded-xl cursor-pointer transition-all duration-200 ${
+                    isDark ? 'bg-slate-800/50 text-slate-300 hover:bg-slate-700/50' : 'bg-white/50 text-slate-700 hover:bg-slate-100/50'
+                  }`}
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              {/* Scrollable content */}
+              <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
+                {navItems.map((item, index) => {
+                  const isActive = activeSection === item.id;
+                  return (
+                    <motion.button
+                      key={item.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      onClick={() => handleItemClick(item.id)}
+                      className={`w-full ${isRtl ? 'text-right' : 'text-left'} px-5 py-4 rounded-2xl text-sm font-bold tracking-normal transition-all duration-300 cursor-pointer border ${
+                        isActive
+                          ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-transparent shadow-lg shadow-blue-500/20'
+                          : isDark ? 'bg-slate-800/50 text-slate-200 border-slate-700/50 hover:bg-slate-700/50' : 'bg-white/60 text-slate-700 border-slate-300/50 hover:bg-white/80'
                       }`}
                     >
                       {item.label}
-                      <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${mobileTrackingDropdownOpen ? 'rotate-180' : ''}`} />
-                    </button>
-
-                    {/* Mobile Dropdown */}
-                    {mobileTrackingDropdownOpen && (
-                      <div className={`mt-2 ml-4 space-y-2 ${isRtl ? 'mr-4 ml-0' : ''}`}>
-                        {trackingDropdownItems.map((dropdownItem) => {
-                          const isActive = activeSection === dropdownItem.id;
-                          return (
-                            <button
-                              key={dropdownItem.id}
-                              onClick={() => {
-                                handleItemClick(dropdownItem.id);
-                                setMobileTrackingDropdownOpen(false);
-                              }}
-                              className={`w-full ${isRtl ? 'text-right' : 'text-left'} px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-150 cursor-pointer ${
-                                isActive
-                                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/10'
-                                  : isDark ? 'bg-slate-800/50 text-slate-300 hover:bg-slate-700/50' : 'bg-white/50 text-slate-700 hover:bg-slate-100/50'
-                              }`}
-                            >
-                              {dropdownItem.label}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-              const isActive = activeSection === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleItemClick(item.id)}
-                  className={`w-full ${isRtl ? 'text-right' : 'text-left'} px-5 py-3.5 rounded-2xl text-sm font-bold tracking-normal transition-all duration-200 cursor-pointer border ${
-                    isActive
-                      ? 'bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/10'
-                      : isDark ? 'bg-slate-800/50 text-slate-200 border-transparent hover:bg-slate-700/50' : 'bg-white/50 text-slate-700 border-transparent hover:bg-slate-100/50'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-            
-            <div className={`pt-6 border-t space-y-3 ${isDark ? 'border-slate-700/50' : 'border-slate-300/50'}`}>
-              {/* Language Switch inside mobile menu - 3 buttons */}
-              <div className="flex gap-2">
-                {languageOptions.map((opt) => {
-                  const isActive = language === opt.code;
-                  return (
-                    <button
-                      key={opt.code}
-                      onClick={() => {
-                        changeLanguage(opt.code);
-                        setMobileMenuOpen(false);
-                      }}
-                      className={`flex-1 flex items-center justify-center gap-1.5 py-3 rounded-2xl text-xs font-bold cursor-pointer border transition-all duration-200 ${
-                        isActive
-                          ? 'bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/10'
-                          : isDark ? 'bg-slate-800/50 border-slate-700/50 text-slate-300 hover:bg-slate-700/50' : 'bg-white/50 border-slate-300/50 text-slate-700 hover:bg-slate-100/50'
-                      }`}
-                    >
-                      <span>{opt.flag}</span>
-                      <span>{opt.label}</span>
-                    </button>
+                    </motion.button>
                   );
                 })}
               </div>
 
-              <button
-                onClick={() => handleItemClick('tracker')}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs uppercase tracking-wider py-3.5 rounded-2xl shadow-lg cursor-pointer"
-              >
-                {t('nav_track_btn')}
-                <ArrowRight className={`h-4 w-4 ${isRtl ? 'rotate-180' : ''}`} />
-              </button>
+              {/* Footer with language and track button */}
+              <div className={`p-6 border-t space-y-4 ${isDark ? 'border-slate-700/50 bg-slate-900/50' : 'border-slate-300/50 bg-white/50'}`}>
+                {/* Language Switch - Single button with dropdown */}
+                <div className="relative" ref={mobileLangDropdownRef}>
+                  <button
+                    onClick={() => setMobileLangDropdownOpen(!mobileLangDropdownOpen)}
+                    className={`w-full flex items-center justify-between px-5 py-4 rounded-2xl text-sm font-bold cursor-pointer border transition-all duration-300 ${
+                      isDark ? 'bg-slate-800/50 border-slate-700/50 text-slate-200 hover:bg-slate-700/50' : 'bg-white/60 border-slate-300/50 text-slate-700 hover:bg-white/80'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <img src={currentLang.flag} alt="" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
+                      <span>{currentLang.label}</span>
+                    </div>
+                    <ChevronDown className={`h-4 w-4 transition-transform300 ${mobileLangDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {mobileLangDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className={`absolute bottom-full mb-2 left-0 right-0 border rounded-2xl shadow-xl overflow-hidden z-50 ${
+                          isDark ? 'bg-slate-900 border-slate-700/50' : 'bg-white border-slate-300/50'
+                        }`}
+                      >
+                        {languageOptions.map((opt) => {
+                          const isActive = language === opt.code;
+                          return (
+                            <button
+                              key={opt.code}
+                              onClick={() => {
+                                changeLanguage(opt.code);
+                                setMobileLangDropdownOpen(false);
+                              }}
+                              className={`w-full flex items-center gap-3 px-5 py-3 text-sm font-semibold transition-all duration-150 cursor-pointer ${
+                                isActive
+                                  ? isDark ? 'bg-blue-950/40 text-blue-400' : 'bg-blue-50 text-blue-600'
+                                  : isDark ? 'text-slate-300 hover:bg-slate-800/60' : 'text-slate-700 hover:bg-slate-100/60'
+                              }`}
+                            >
+                              <img src={opt.flag} alt="" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
+                              <span className="flex-1 text-left">{opt.label}</span>
+                              {isActive && <Check className={`h-4 w-4 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />}
+                            </button>
+                          );
+                        })}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <button
+                  onClick={() => handleItemClick('tracker')}
+                  className="w-full flex items-center justify-center gap-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs uppercase tracking-wider py-4 rounded-2xl shadow-lg shadow-blue-500/20 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+                >
+                  {t('nav_track_btn')}
+                  <ArrowRight className={`h-4 w-4 ${isRtl ? 'rotate-180' : ''}`} />
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
