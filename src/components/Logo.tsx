@@ -1,6 +1,6 @@
-import React from 'react';
-import zenomixIconDark from '../assets/zenomix-logo.png';
-import zenomixIconLight from '../assets/zenomix-logo-light.png';
+import React, { useState, useEffect } from 'react';
+import logoDesktop from '../assets/logoDesktop.png';
+import logoMobile from '../assets/logomobile.png';
 
 interface LogoProps {
   className?: string;
@@ -12,6 +12,18 @@ interface LogoProps {
 }
 
 export default function Logo({ className = '', iconOnly = false, size = 'md', onClick, lightText = false, isDark = false }: LogoProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const dimensions = {
     sm: { icon: 'h-16 w-auto', text: 'text-lg' },
     md: { icon: 'h-20 w-auto', text: 'text-2xl' },
@@ -20,7 +32,7 @@ export default function Logo({ className = '', iconOnly = false, size = 'md', on
   };
 
   const currentSize = dimensions[size];
-  const logoSrc = isDark ? zenomixIconDark : zenomixIconLight;
+  const logoSrc = isMobile ? logoMobile : logoDesktop;
 
   return (
     <div className={`flex items-center select-none ${className}`} onClick={onClick}>
