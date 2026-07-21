@@ -204,7 +204,7 @@ export default function Navbar({ onNavigate, activeSection, isDark, onToggleDark
               </button>
 
               {/* Mobile Dropdown */}
-              {/* {mobileLangDropdownOpen && (
+              {mobileLangDropdownOpen && (
                 <div className={`absolute top-full mt-1.5 right-0 w-40 border rounded-xl shadow-xl overflow-hidden z-50 ${
                   isDark ? 'bg-slate-900 border-slate-700/50 shadow-slate-950/50' : 'bg-white border-slate-300/50 shadow-slate-200/50'
                 }`}>
@@ -230,7 +230,7 @@ export default function Navbar({ onNavigate, activeSection, isDark, onToggleDark
                     );
                   })}
                 </div>
-              )} */}
+              )}
             </div>
 
             {/* Mobile Theme Toggle */}
