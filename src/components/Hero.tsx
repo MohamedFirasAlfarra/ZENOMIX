@@ -8,14 +8,30 @@ interface HeroProps {
 
 export default function Hero({ onNavigate }: HeroProps) {
   const { t, isRtl } = useLanguage();
+  const heroVideoSrc = `${import.meta.env.BASE_URL}videos/hero-background.mp4`;
 
   return (
     <section id="home" className="relative min-h-screen pt-32 pb-16 flex items-center overflow-hidden bg-slate-50 dark:bg-slate-950">
-      {/* Dynamic Grid Background with ambient gradient glows */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-blue-50/50 dark:bg-blue-900/10 rounded-full filter blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-indigo-50/50 dark:bg-indigo-900/10 rounded-full filter blur-[120px]" />
-        <div className="absolute inset-0 grid-lines opacity-40" />
+      {/* Background video layer */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src={heroVideoSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-slate-950/35 dark:bg-slate-950/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/55 via-slate-900/20 to-slate-950/40" />
+
+        {/* Dynamic Grid Background with ambient gradient glows */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-blue-50/50 dark:bg-blue-900/10 rounded-full filter blur-[120px]" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-indigo-50/50 dark:bg-indigo-900/10 rounded-full filter blur-[120px]" />
+          <div className="absolute inset-0 grid-lines opacity-40" />
+        </div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">

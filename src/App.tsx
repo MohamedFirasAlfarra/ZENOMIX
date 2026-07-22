@@ -18,7 +18,6 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'impressum' | 'datenschutz'>('home');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Scroll to top on page navigation switch
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
@@ -31,7 +30,6 @@ export default function App() {
     return false;
   });
 
-  // Apply dark mode class to html element
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
@@ -42,7 +40,6 @@ export default function App() {
     }
   }, [isDark]);
 
-  // Intersection Observer for scroll spy
   useEffect(() => {
     if (currentPage !== 'home') {
       if (currentPage === 'tracking-tech') {
@@ -55,7 +52,7 @@ export default function App() {
 
     const observerOptions = {
       root: null,
-      rootMargin: '-30% 0px -50% 0px', // trigger when section occupies focal center
+      rootMargin: '-30% 0px -50% 0px',
       threshold: 0,
     };
 
@@ -87,7 +84,6 @@ export default function App() {
     };
   }, [currentPage]);
 
-  // Monitor scroll for back-to-top visibility
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 400) {
@@ -142,7 +138,6 @@ export default function App() {
         }
       }
     } else {
-      // Home page targets: 'home', 'about', 'services', 'faq', 'contact'
       if (currentPage !== 'home') {
         setCurrentPage('home');
         setTimeout(() => {
@@ -180,9 +175,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col font-sans select-text selection:bg-blue-100 dark:selection:bg-blue-900/50 selection:text-blue-900 dark:selection:text-blue-100">
-      
-      {/* Dynamic Navigation */}
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col font-sans select-text selection:bg-blue-100 dark:selection:bg-blue-900/50 selection:text-blue-900 dark:selection:text-blue-100"> 
       <Navbar 
         onNavigate={handleNavigate} 
         activeSection={activeSection} 
@@ -190,36 +183,23 @@ export default function App() {
         onToggleDark={() => setIsDark(!isDark)} 
       />
 
-      {/* Main Single Page Sections */}
       <main className="flex-grow">
         {currentPage === 'home' && (
           <>
-            {/* 1. Hero Entrance Section */}
             <Hero onNavigate={handleNavigate} />
-
-            {/* 2. Company Narrative, Values & Testimonials */}
             <About />
-
-            {/* 3. Core Logistics Services */}
             <Services />
-
-            {/* 4. FAQ Dynamic Accordion Section */}
             <Faq />
-
-            {/* 5. Route Inquiry Form Ticket Dispatch */}
             <Contact />
           </>
         )}
 
         {currentPage === 'tracking-tech' && (
           <div className="pt-16">
-            {/* 1. Interactive Pricing & Route Costing Calculator */}
             <Calculator />
 
-            {/* 2. Live Shipment Telemetry Terminal */}
             <Tracker />
 
-            {/* 3. Low-Emission Fleet Specs & Tech */}
             <Fleet />
           </div>
         )}
@@ -233,14 +213,12 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer & Compliance Details */}
       <Footer 
         onNavigate={handleNavigate} 
         onNavigatePage={setCurrentPage} 
         isDark={isDark} 
       />
 
-      {/* Back to Top floating micro-control */}
       {showScrollTop && (
         <button
           onClick={handleScrollToTop}

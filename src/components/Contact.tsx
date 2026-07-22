@@ -125,7 +125,7 @@ export default function Contact() {
                       {t('contact_inquiries')}
                     </h4>
                     <p className="text-sm font-semibold text-slate-800 dark:text-slate-200 mt-1">
-                      info@zenomix.com
+                      Zenomix.de
                     </p>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 font-medium">
                       {t('contact_reply_time')}

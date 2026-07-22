@@ -50,10 +50,15 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Services Grid (Bento Grid Style) */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {services.map((service) => {
-            return (
+        {/* Services Grid */}
+        <div className="relative">
+          <div className="absolute inset-0 -z-10 pointer-events-none">
+            <div className="absolute left-[-10%] top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-blue-100/70 blur-[120px] dark:bg-blue-950/30" />
+            <div className="absolute right-[-8%] top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-indigo-100/70 blur-[120px] dark:bg-indigo-950/30" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {services.map((service) => (
               <div
                 key={service.id}
                 id={`service-card-${service.id}`}
@@ -108,8 +113,8 @@ export default function Services() {
                   </div>
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
         {/* Extended Detail Modal */}

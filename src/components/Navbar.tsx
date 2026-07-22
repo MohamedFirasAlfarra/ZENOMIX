@@ -77,10 +77,10 @@ export default function Navbar({ onNavigate, activeSection, isDark, onToggleDark
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         mobileMenuOpen
-          ? isDark ? 'bg-[#101532] border-b border-slate-700/50 shadow-md py-3.5' : 'bg-[#F7FBFD] border-b border-slate-300/50 shadow-md py-3.5'
+          ? isDark ? 'bg-[#101532]/85 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-slate-950/30 py-3.5' : 'bg-white/70 backdrop-blur-xl border-b border-white/50 shadow-lg shadow-slate-200/40 py-3.5'
           : isScrolled
-          ? isDark ? 'bg-[#101532]/95 backdrop-blur-md shadow-md border-b border-slate-700/50 py-3.5' : 'bg-[#F7FBFD]/95 backdrop-blur-md shadow-md border-b border-slate-300/50 py-3.5'
-          : isDark ? 'bg-[#101532]/90 backdrop-blur-sm border-b border-slate-700/30 py-5' : 'bg-[#F7FBFD]/90 backdrop-blur-sm border-b border-slate-300/30 py-5'
+          ? isDark ? 'bg-slate-900/30 backdrop-blur-xl shadow-lg shadow-slate-950/30 border-b border-white/10 py-3.5' : 'bg-white/25 backdrop-blur-xl shadow-lg shadow-slate-200/50 border-b border-white/50 py-3.5'
+          : isDark ? 'bg-[#101532]/70 backdrop-blur-sm border-b border-white/10 py-5' : 'bg-[#F7FBFD]/70 backdrop-blur-sm border-b border-slate-300/30 py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -187,52 +187,6 @@ export default function Navbar({ onNavigate, activeSection, isDark, onToggleDark
 
           {/* Mobile Actions Container */}
           <div className="lg:hidden flex items-center gap-2">
-            {/* Mobile Language Dropdown */}
-            <div className="relative" ref={mobileLangDropdownRef}>
-              <button
-                onClick={() => setMobileLangDropdownOpen(!mobileLangDropdownOpen)}
-                className={`px-2.5 py-1.5 rounded-lg text-xs font-bold cursor-pointer flex items-center gap-1 ${
-                  isDark 
-                    ? 'text-slate-300 hover:text-blue-400 bg-slate-800/50 border border-slate-700/50' 
-                    : 'text-slate-700 hover:text-blue-600 bg-white/50 border border-slate-300/50'
-                }`}
-                aria-label="Select language"
-              >
-                <Globe className={`h-3 w-3 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
-                <img src={currentLang.flag} alt="" className="w-5 h-3.5 object-cover rounded-sm shadow-sm" />
-                <ChevronDown className={`h-2.5 w-2.5 transition-transform duration-200 ${mobileLangDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-
-              {/* Mobile Dropdown */}
-              {mobileLangDropdownOpen && (
-                <div className={`absolute top-full mt-1.5 right-0 w-40 border rounded-xl shadow-xl overflow-hidden z-50 ${
-                  isDark ? 'bg-slate-900 border-slate-700/50 shadow-slate-950/50' : 'bg-white border-slate-300/50 shadow-slate-200/50'
-                }`}>
-                  {languageOptions.map((opt) => {
-                    const isActive = language === opt.code;
-                    return (
-                      <button
-                        key={opt.code}
-                        onClick={() => {
-                          changeLanguage(opt.code);
-                          setMobileLangDropdownOpen(false);
-                        }}
-                        className={`w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-semibold transition-all duration-150 cursor-pointer ${
-                          isActive
-                            ? isDark ? 'bg-blue-950/40 text-blue-400' : 'bg-blue-50 text-blue-600'
-                            : isDark ? 'text-slate-300 hover:bg-slate-800/60' : 'text-slate-700 hover:bg-slate-100/60'
-                        }`}
-                      >
-                        <img src={opt.flag} alt="" className="w-5 h-3.5 object-cover rounded-sm shadow-sm" />
-                        <span className="flex-1 text-left">{opt.label}</span>
-                        {isActive && <Check className={`h-3.5 w-3.5 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-
             {/* Mobile Theme Toggle */}
             <button
               onClick={onToggleDark}

@@ -123,7 +123,7 @@ export default function Footer({ onNavigate, onNavigatePage, isDark = false }: F
             <div className="space-y-3 text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
               <p>
                 <strong className="text-slate-800 dark:text-slate-200 font-bold block">{t('footer_ops_email')}:</strong>
-                info@zenomix.com
+                Zenomix.de
               </p>
               <p>
                 <strong className="text-slate-800 dark:text-slate-200 font-bold block">{t('footer_ops_hotline')}:</strong>
