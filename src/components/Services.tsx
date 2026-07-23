@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../LanguageContext';
 import { ServiceItem } from '../types';
 import { Zap, Truck, Globe, Shield, ArrowRight, CheckCircle2, ChevronRight, X, Box } from 'lucide-react';
@@ -7,6 +7,21 @@ export default function Services() {
   const { services, t, isRtl, language } = useLanguage();
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
   const marqueeGroups = [services, services];
+
+  useEffect(() => {
+    if (!selectedService) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const previousTouchAction = document.body.style.touchAction;
+
+    document.body.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.body.style.touchAction = previousTouchAction;
+    };
+  }, [selectedService]);
 
   // Helper function to render matching icon dynamically
   const renderIcon = (iconName: string, className: string = "h-6 w-6") => {
@@ -124,22 +139,27 @@ export default function Services() {
 
         {/* Extended Detail Modal */}
         {selectedService && (
-          <div className="fixed inset-0 bg-slate-900/60 dark:bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 animate-fade-in" onClick={() => setSelectedService(null)}>
+          <div className="fixed inset-0 bg-slate-900/60 dark:bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 animate-fade-in overflow-hidden" onClick={() => setSelectedService(null)}>
             <div 
-              className={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative p-6 sm:p-8 shadow-2xl dark:shadow-none animate-scale-up ${isRtl ? 'text-right' : 'text-left'}`}
+              className={`bg-white dark:bg-slate-900 border border-slate-200
+                 dark:border-slate-800 rounded-3xl max-w-3xl w-full max-h-[82vh]
+                  overflow-y-auto overscroll-contain relative p-5 pt-12 mt-20 pb-10 sm:p-8
+                   sm:pt-8 shadow-2xl dark:shadow-none animate-scale-up
+                    ${isRtl ? 'text-right' : 'text-left'}`}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedService(null)}
-                className={`absolute top-4 ${isRtl ? 'left-4' : 'right-4'} sm:top-6 sm:${isRtl ? 'left-6' : 'right-6'} p-2 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-950 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-900 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors cursor-pointer z-10`}
+                className={`absolute top-4 ${isRtl ? 'left-4' : 'right-4'} sm:top-6 ${isRtl ? 'sm:left-6' : 'sm:right-6'} p-2 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-950 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-900 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors cursor-pointer z-20 shadow-sm`}
                 id="close-service-modal"
+                aria-label={isRtl ? 'إغلاق تفاصيل الخدمة' : 'Close service details'}
               >
                 <X className="h-5 w-5" />
               </button>
 
               {/* Service Title */}
-              <div className={`flex items-center gap-4 mb-6 ${isRtl ? 'flex-row-reverse text-right' : ''}`}>
+              <div className={`flex flex-col items-start gap-4 mb-6 sm:flex-row sm:items-center ${isRtl ? 'sm:flex-row-reverse text-right pl-10 sm:pl-0' : 'text-left pr-10 sm:pr-0'}`}>
                 <div className="p-4 rounded-2xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/30">
                   {renderIcon(selectedService.iconName, "h-8 w-8")}
                 </div>
@@ -192,7 +212,7 @@ export default function Services() {
               </div>
 
               {/* Footer CTA */}
-              <div className={`mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 ${isRtl ? 'flex-row-reverse' : ''}`}>
+              <div className={`mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col items-stretch justify-between gap-4 sm:flex-row sm:items-center ${isRtl ? 'sm:flex-row-reverse' : ''}`}>
                 <span className="text-xs text-slate-400 dark:text-slate-500 font-mono">
                   {isRtl ? 'تتضمن جميع العقود تأميناً برياً وبحرياً قياسياً (بحد مسؤولية ٢٥٠ ألف دولار).' : 'All contracts include standard transit insurance ($250k liability limit).'}
                 </span>
@@ -205,7 +225,7 @@ export default function Services() {
                       element.scrollIntoView({ behavior: 'smooth' });
                     }
                   }}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 text-white font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-full shadow-md shadow-blue-500/10 cursor-pointer"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 text-white font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-full shadow-md shadow-blue-500/10 cursor-pointer whitespace-nowrap"
                 >
                   <span>{isRtl ? 'احسب تسعيرة الشحن الفورية' : 'Generate Custom Quote'}</span>
                   <ArrowRight className={`h-4 w-4 ${isRtl ? 'rotate-180' : ''}`} />
