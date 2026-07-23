@@ -13,10 +13,17 @@ import Datenschutz from './components/Datenschutz';
 import Footer from './components/Footer';
 import { ChevronUp, ArrowRight, Shield } from 'lucide-react';
 
+type AppPage = 'home' | 'tracking-tech' | 'impressum' | 'datenschutz';
+
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
-  const [currentPage, setCurrentPage] = useState<'home' | 'impressum' | 'datenschutz'>('home');
+  const [currentPage, setCurrentPage] = useState<AppPage>('home');
   const [showScrollTop, setShowScrollTop] = useState(false);
+
+  const navigatePage = (page: AppPage) => {
+    setCurrentPage(page);
+    window.history.pushState({ page }, '', window.location.href);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -96,13 +103,25 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    window.history.replaceState({ page: 'home' }, '', window.location.href);
+
+    const handlePopState = () => {
+      const nextPage = (window.history.state?.page as AppPage) || 'home';
+      setCurrentPage(nextPage);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const handleNavigate = (sectionId: string) => {
     const trackingTechSections = ['tracking-tech', 'calculator', 'tracker', 'fleet'];
     const isTrackingTechTarget = trackingTechSections.includes(sectionId);
 
     if (isTrackingTechTarget) {
       if (currentPage !== 'tracking-tech') {
-        setCurrentPage('tracking-tech');
+        navigatePage('tracking-tech');
         setTimeout(() => {
           if (sectionId === 'tracking-tech') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -139,7 +158,7 @@ export default function App() {
       }
     } else {
       if (currentPage !== 'home') {
-        setCurrentPage('home');
+        navigatePage('home');
         setTimeout(() => {
           const element = document.getElementById(sectionId);
           if (element) {
@@ -205,17 +224,17 @@ export default function App() {
         )}
 
         {currentPage === 'impressum' && (
-          <Impressum onBack={() => setCurrentPage('home')} />
+          <Impressum onBack={() => navigatePage('home')} />
         )}
 
         {currentPage === 'datenschutz' && (
-          <Datenschutz onBack={() => setCurrentPage('home')} />
+          <Datenschutz onBack={() => navigatePage('home')} />
         )}
       </main>
 
       <Footer 
         onNavigate={handleNavigate} 
-        onNavigatePage={setCurrentPage} 
+        onNavigatePage={navigatePage} 
         isDark={isDark} 
       />
 

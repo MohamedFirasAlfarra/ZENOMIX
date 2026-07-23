@@ -13,6 +13,11 @@ export default function Footer({ onNavigate, onNavigatePage, isDark = false }: F
   const { t, isRtl } = useLanguage();
   const [newsEmail, setNewsEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [mobileSections, setMobileSections] = useState({
+    map: false,
+    legal: false,
+    ops: false,
+  });
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,18 +38,22 @@ export default function Footer({ onNavigate, onNavigatePage, isDark = false }: F
     { label: t('nav_contact'), id: 'contact' },
   ];
 
+  const toggleMobileSection = (key: keyof typeof mobileSections) => {
+    setMobileSections(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
   return (
-    <footer className={`bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900 py-16 relative overflow-hidden ${isRtl ? 'text-right' : 'text-left'}`}>
+    <footer className={`bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900 py-10 md:py-16 relative overflow-hidden ${isRtl ? 'text-right' : 'text-left'}`}>
       
       {/* Background visual highlight */}
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-50/40 dark:bg-blue-950/10 rounded-full filter blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-slate-200 dark:border-slate-800 ${isRtl ? 'flex-row-reverse' : ''}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-10 lg:gap-12 pb-8 md:pb-12 border-b border-slate-200 dark:border-slate-800 ${isRtl ? 'flex-row-reverse' : ''}`}>
           
           {/* Logo & Slogan Column */}
-          <div className="lg:col-span-3 flex flex-col space-y-5">
+          <div className="lg:col-span-3 flex flex-col space-y-4 md:space-y-5">
             <div className={`flex ${isRtl ? 'justify-end' : 'justify-start'}`}>
               <Logo size="md" isDark={isDark} />
             </div>
@@ -71,8 +80,88 @@ export default function Footer({ onNavigate, onNavigatePage, isDark = false }: F
             </div>
           </div>
 
-          {/* Sitemaps Column */}
-          <div className="lg:col-span-2 flex flex-col space-y-4">
+          {/* Mobile accordion sections for compact layout */}
+          <div className="block lg:hidden space-y-3">
+            <button
+              type="button"
+              onClick={() => toggleMobileSection('map')}
+              className="w-full flex items-center justify-between rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 text-xs font-extrabold uppercase tracking-widest text-slate-800 dark:text-slate-200"
+            >
+              <span>{t('footer_map_title')}</span>
+              <span className={`transition-transform ${mobileSections.map ? 'rotate-180' : ''}`}>⌄</span>
+            </button>
+            {mobileSections.map && (
+              <ul className="grid grid-cols-1 gap-2.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/50 px-4 py-3">
+                {menuLinks.map((link) => (
+                  <li key={link.id}>
+                    <button
+                      onClick={() => onNavigate(link.id)}
+                      className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium cursor-pointer"
+                    >
+                      {link.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <button
+              type="button"
+              onClick={() => toggleMobileSection('legal')}
+              className="w-full flex items-center justify-between rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 text-xs font-extrabold uppercase tracking-widest text-slate-800 dark:text-slate-200"
+            >
+              <span>{t('footer_legal_title')}</span>
+              <span className={`transition-transform ${mobileSections.legal ? 'rotate-180' : ''}`}>⌄</span>
+            </button>
+            {mobileSections.legal && (
+              <ul className="grid grid-cols-1 gap-2.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/50 px-4 py-3">
+                <li>
+                  <button
+                    onClick={() => onNavigatePage('impressum')}
+                    className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium cursor-pointer"
+                  >
+                    {t('footer_imprint')}
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onNavigatePage('datenschutz')}
+                    className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium cursor-pointer"
+                  >
+                    {t('footer_privacy')}
+                  </button>
+                </li>
+              </ul>
+            )}
+
+            <button
+              type="button"
+              onClick={() => toggleMobileSection('ops')}
+              className="w-full flex items-center justify-between rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 text-xs font-extrabold uppercase tracking-widest text-slate-800 dark:text-slate-200"
+            >
+              <span>{t('footer_ops_title')}</span>
+              <span className={`transition-transform ${mobileSections.ops ? 'rotate-180' : ''}`}>⌄</span>
+            </button>
+            {mobileSections.ops && (
+              <div className="space-y-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/50 px-4 py-3 text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
+                <p>
+                  <strong className="text-slate-800 dark:text-slate-200 font-bold block">{t('footer_ops_email')}:</strong>
+                  Zenomix.de
+                </p>
+                <p>
+                  <strong className="text-slate-800 dark:text-slate-200 font-bold block">{t('footer_ops_hotline')}:</strong>
+                  {t('contact_hotline_val')}
+                </p>
+                <p>
+                  <strong className="text-slate-800 dark:text-slate-200 font-bold block">{t('footer_ops_hours')}:</strong>
+                  {t('footer_ops_hours_val')}
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* Desktop original columns - hidden on mobile */}
+          <div className="hidden lg:block lg:col-span-2 flex flex-col space-y-4">
             <h4 className="text-xs font-sans font-extrabold text-slate-800 dark:text-slate-200 uppercase tracking-widest">
               {t('footer_map_title')}
             </h4>
@@ -90,8 +179,7 @@ export default function Footer({ onNavigate, onNavigatePage, isDark = false }: F
             </ul>
           </div>
 
-          {/* Legal Column */}
-          <div className="lg:col-span-2 flex flex-col space-y-4">
+          <div className="hidden lg:block lg:col-span-2 flex flex-col space-y-4">
             <h4 className="text-xs font-sans font-extrabold text-slate-800 dark:text-slate-200 uppercase tracking-widest">
               {t('footer_legal_title')}
             </h4>
@@ -115,8 +203,7 @@ export default function Footer({ onNavigate, onNavigatePage, isDark = false }: F
             </ul>
           </div>
 
-          {/* Contact Core info */}
-          <div className="lg:col-span-2 flex flex-col space-y-4">
+          <div className="hidden lg:block lg:col-span-2 flex flex-col space-y-4">
             <h4 className="text-xs font-sans font-extrabold text-slate-800 dark:text-slate-200 uppercase tracking-widest">
               {t('footer_ops_title')}
             </h4>

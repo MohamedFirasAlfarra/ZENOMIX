@@ -57,7 +57,7 @@ export default function Hero({ onNavigate }: HeroProps) {
             </h1>
 
             {/* Paragraph Description */}
-            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base lg:text-lg max-w-2xl leading-relaxed font-normal">
+            <p className="text-white/95 dark:text-slate-400 text-sm sm:text-base lg:text-lg max-w-2xl leading-relaxed font-normal">
               {t('hero_subtitle')}
             </p>
 
@@ -86,8 +86,8 @@ export default function Hero({ onNavigate }: HeroProps) {
                   <ShieldCheck className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-slate-200">{isRtl ? 'أمان مضمون' : 'Guaranteed Safe'}</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">{isRtl ? 'مؤمن ومحمي' : 'Locked & Insured'}</p>
+                  <h4 className="text-sm font-bold text-white dark:text-slate-200">{isRtl ? 'أمان مضمون' : 'Guaranteed Safe'}</h4>
+                  <p className="text-xs text-white/80 dark:text-slate-400">{isRtl ? 'مؤمن ومحمي' : 'Locked & Insured'}</p>
                 </div>
               </div>
 
@@ -96,8 +96,8 @@ export default function Hero({ onNavigate }: HeroProps) {
                   <Zap className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-slate-200">{isRtl ? 'سرعة فائقة' : 'Hyper Fast'}</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">{isRtl ? 'توجيه فوري' : 'On-Demand Dispatch'}</p>
+                  <h4 className="text-sm font-bold text-white dark:text-slate-200">{isRtl ? 'سرعة فائقة' : 'Hyper Fast'}</h4>
+                  <p className="text-xs text-white/80 dark:text-slate-400">{isRtl ? 'توجيه فوري' : 'On-Demand Dispatch'}</p>
                 </div>
               </div>
 
@@ -106,8 +106,8 @@ export default function Hero({ onNavigate }: HeroProps) {
                   <Globe className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-slate-200">{isRtl ? 'تغطية كاملة' : 'Full Coverage'}</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">{isRtl ? '٢٢٠+ دولة' : '220+ Countries'}</p>
+                  <h4 className="text-sm font-bold text-white dark:text-slate-200">{isRtl ? 'تغطية كاملة' : 'Full Coverage'}</h4>
+                  <p className="text-xs text-white/80 dark:text-slate-400">{isRtl ? '٢٢٠+ دولة' : '220+ Countries'}</p>
                 </div>
               </div>
             </div>

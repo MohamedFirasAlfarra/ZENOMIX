@@ -80,10 +80,41 @@ html.dark body {
   to { transform: scale(1); opacity: 1; }
 }
 
+@keyframes marquee-ltr {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marquee-rtl {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-scale-up {
   animation: scaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.marquee-track {
+  will-change: transform;
+  direction: ltr;
+}
+
+.marquee-ltr {
+  animation: marquee-ltr 28s linear infinite;
+}
+
+.marquee-rtl {
+  animation: marquee-rtl 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-group {
+  flex-shrink: 0;
 }
